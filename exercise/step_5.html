@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Reactを完全に理解する</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            const element = (
+                <div id="sbg">
+                    ソフトバンクグループ
+                    <div id="sb">
+                        ソフトバンク
+                        <div id="zhd">
+                            Zホールディングス
+                            <div id="line">
+                                LINE
+                            </div>
+                            <div id="yahoo">
+                                Yahoo
+                            </div>
+                        </div>
+                        <div id="paypay">
+                            PayPay
+                        </div>
+                        <div id="line-yahoo">
+                        </div>
+                    </div>
+                </div>
+            );
+
+            const root = document.getElementById("root");
+            ReactDOM.render(element, root);
+
+            console.log(element);
+            // - React要素が子要素を持つ場合、子要素がprops.childrenに格納される
+            // - React要素が子要素を持たない場合、props.childrenはundefinedになる
+            // - 子要素を1つだけの場合、props.childrenはオブジェクトになる
+            // - 子要素を2つ以上持つ場合、props.childrenは配列になる
+            // - 子要素がテキストの場合、props.childrenは文字列になる
+        </script>
+    </body>
+</html>

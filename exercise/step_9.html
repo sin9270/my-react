@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>Reactを完全に理解する</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script>
+            const render = (element, parent) => {
+                // 子要素がテキストの場合
+                if (typeof element === "string") {
+                    const text = document.createTextNode("");
+                    text["nodeValue"] = element;
+                    parent.appendChild(text);
+                    return;
+                }
+
+                const node = document.createElement(element.type);
+
+                for (const [key, value] of Object.entries(element.props)) {
+                    if (key === "children") continue;
+                    node[key] = value;
+                }
+
+                if (element.props.children !== undefined) {
+                    if (Array.isArray(element.props.children)) {
+                        // 子要素を複数持つ場合
+                        element.props.children.forEach(child => {
+                            render(child, node);
+                        });
+                    } else {
+                        // 子要素を1つだけ持つ場合
+                        render(element.props.children, node);
+                    }
+                }
+                parent.appendChild(node);
+            };
+
+            const createElement = (type, props, ...children) => {
+                return {
+                    type,
+                    props: {
+                        ...props,
+                        children,
+                    },
+                };
+            };
+        </script>
+        <script type="text/babel">
+            /** @jsx createElement */
+            const element = (
+                <div id="sbg">
+                    ソフトバンクグループ
+                    <div id="sb">
+                        ソフトバンク
+                        <div id="zhd">
+                            Zホールディングス
+                            <div id="line">
+                                LINE
+                            </div>
+                            <div id="yahoo">
+                                Yahoo
+                            </div>
+                        </div>
+                        <div id="paypay">
+                            PayPay
+                        </div>
+                        <div id="line-yahoo">
+                            <div id="tbd"></div>
+                        </div>
+                    </div>
+                </div>
+            );
+            const root = document.getElementById("root");
+            render(element, root);
+        </script>
+    </body>
+</html>

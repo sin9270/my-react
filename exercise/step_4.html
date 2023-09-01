@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Reactを完全に理解する</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script> -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script> -->
+    </head>
+    <body>
+        <div id="root"></div>
+        <script>
+            const render = (element, root) => {
+                const node = document.createElement(element.type);
+                for (const [key, value] of Object.entries(element.props)) {
+                    if (key !== "children") {
+                        node[key] = value;
+                    } else {
+                        const text = document.createTextNode("");
+                        text["nodeValue"] = element.props.children;
+                        node.appendChild(text);
+                    }
+                }
+                root.appendChild(node);
+            };
+        </script>
+        <script>
+            const element = React.createElement(
+                "h1",
+                { title: "foo" },
+                "Hello, PKSHA!"
+            );
+
+            const root = document.getElementById("root");
+            // ReactDOM.render(element, root);
+            render(element, root);
+        </script>
+    </body>
+</html>

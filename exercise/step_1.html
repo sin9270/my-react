@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>Reactを完全に理解する</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            const element = <h1 title="foo">Hello, PKSHA!</h1>;
+            const root = document.getElementById("root");
+            ReactDOM.render(element, root);
+        </script>
+    </body>
+</html>
